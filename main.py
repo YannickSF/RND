@@ -17,7 +17,7 @@ def main():
     ml = DecisionTree(2)
 
     ml.push_layer(0, RootLgtLayer)
-    #ml.push_layer(1, PetalslgtLayer)
+    ml.push_layer(1, PetalslgtLayer)
     ml.push_layer(1, PetalsNbLayer)
 
     group = generate_group()

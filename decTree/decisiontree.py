@@ -21,13 +21,13 @@ class DecisionTree:
         self._group = group
 
     def check_level(self, lvl):
-        # TODO : corriger
-        if len(self.layers[lvl]) == lvl ** 2:
+        if len(self.layers[lvl]) == 2 ** lvl:
             return False
         return True
 
     def push_layer(self, lvl, layer):
-        self.layers[lvl].append(layer)
+        if self.check_level(lvl):
+            self.layers[lvl].append(layer)
 
     """ Test le niveau de l'arbre"""
     def try_lvl(self, lvl, group):
