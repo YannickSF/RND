@@ -6,7 +6,7 @@ from decTree.tools import Layer
 
 class PetalsNbLayer(Layer):
     def __init__(self):
-        Layer.__init__()
+        Layer.__init__(self, 'PetalsNbLayer')
 
     @staticmethod
     def rule(value):
@@ -14,10 +14,16 @@ class PetalsNbLayer(Layer):
             return True
         return False
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.__repr__().__str__()
+
 
 class PetalslgtLayer(Layer):
     def __init__(self):
-        Layer.__init__()
+        Layer.__init__(self, 'PetalsLgtLayer')
 
     @staticmethod
     def rule(value):
@@ -25,13 +31,25 @@ class PetalslgtLayer(Layer):
             return True
         return False
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.__repr__().__str__()
+
 
 class RootLgtLayer(Layer):
     def __init__(self):
-        Layer.__init__()
+        Layer.__init__(self, 'RootLgtLayer')
 
     @staticmethod
     def rule(value):
         if value.root_length > 15:
             return True
         return False
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.__repr__().__str__()

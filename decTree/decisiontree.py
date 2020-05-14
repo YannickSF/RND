@@ -29,35 +29,18 @@ class DecisionTree:
         if self.check_level(lvl):
             self.layers[lvl].append(layer)
 
-    """ Test le niveau de l'arbre"""
-    def try_lvl(self, lvl, group):
-        global_pool = []
-        group_turn = True
-        group_itr = -1
-
-        def lvl_execution(layer, sets):
-            r = {True: [], False: []}
-            for j in sets:
-                r[layer.rule(j)].append(j)
-            return r
-
-        for i in range(len(self.layers[lvl])):
-            if lvl == 0:
-                global_pool.append(lvl_execution(self.layers[lvl][i], group))
-            else:
-                if group_turn:
-                    group_itr += 1
-
-                global_pool.append(lvl_execution(self.layers[lvl][i], group[group_itr][group_turn]))
-                group_turn = not group_turn
-
-        return global_pool
-
     def execute(self):
-        for i in range(self.deep):
-            if i == 0:
-                self.results[i] = self.try_lvl(i, self.group)
+        for lvl in range(self.deep):
+            self.results[lvl + 1] = {}
+            if lvl == 0:
+                # self.results[i] = self.try_lvl(i, self.group)
+                self.layers[lvl][0].execute(self.group)
+                self.results[lvl + 1].update({key: value for key, value in self.layers[lvl][0].next_leaf()})
             else:
-                self.results[i] = self.try_lvl(i, self.results[i-1])
+                # self.results[i] = self.try_lvl(i, self.results[i-1])
+                for l in range(len(self.layers[lvl])):
+                    lays = self.layers[lvl][l]
+                    lays.execute(self.results[lvl][lays.name])
+                    self.results[lvl + 1].update({key: value for key, value in lays.next_leaf()})
 
         return self.results
