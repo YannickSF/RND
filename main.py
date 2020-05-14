@@ -10,15 +10,28 @@ from decTree.layers.PlantsLayers import *
 
 
 def generate_group():
-    return [Plant(i, random.randint(5, 10), random.uniform(2.0, 4.0), random.randint(5, 25)) for i in range(10)]
+    return [Plant(i, random.randint(5, 10), random.uniform(2.0, 4.0), random.randint(5, 25)) for i in range(100)]
 
 
 def main():
     ml = DecisionTree(2)
 
-    ml.push_layer(0, RootLgtLayer)
-    ml.push_layer(1, PetalslgtLayer)
-    ml.push_layer(1, PetalsNbLayer)
+    l0 = RootLgtLayer()
+    l1 = PetalslgtLayer()
+    l1p = PetalsNbLayer()
+
+    l0.push_next(True, l1.name)
+    l0.push_next(False, l1p.name)
+
+    l1.push_next(True, 'ClassA')
+    l1.push_next(False, 'ClassB')
+
+    l1p.push_next(True, 'ClassC')
+    l1p.push_next(False, 'ClassD')
+
+    ml.push_layer(0, l0)
+    ml.push_layer(1, l1)
+    ml.push_layer(1, l1p)
 
     group = generate_group()
     ml.group = group
