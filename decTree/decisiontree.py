@@ -18,6 +18,7 @@ class DecisionTree:
 
     @group.setter
     def group(self, group):
+        # self.results[0] = group
         self._group = group
 
     def check_level(self, lvl):

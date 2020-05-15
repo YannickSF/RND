@@ -14,12 +14,6 @@ class PetalsNbLayer(Layer):
             return True
         return False
 
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.__repr__().__str__()
-
 
 class PetalslgtLayer(Layer):
     def __init__(self):
@@ -31,12 +25,6 @@ class PetalslgtLayer(Layer):
             return True
         return False
 
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.__repr__().__str__()
-
 
 class RootLgtLayer(Layer):
     def __init__(self):
@@ -47,9 +35,3 @@ class RootLgtLayer(Layer):
         if value.root_length > 15:
             return True
         return False
-
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.__repr__().__str__()

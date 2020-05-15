@@ -24,3 +24,9 @@ class Layer:
     def execute(self, pset):
         for i in pset:
             self.result[self.rule(i)].append(i)
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.__repr__().__str__()
